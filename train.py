@@ -57,6 +57,17 @@ from utils.metrics import fitness
 from utils.plots import plot_evolve, plot_labels
 from utils.torch_utils import EarlyStopping, ModelEMA, de_parallel, select_device, torch_distributed_zero_first
 
+import matplotlib.pyplot as plt
+from matplotlib import font_manager
+ 
+font_path = 'SimHei.ttf' # ttf的路径 最好是具体路径
+font_manager.fontManager.addfont(font_path)
+ 
+# plt.rcParams['font.family'] = 'SimHei' #下面代码不行，在加上这一行
+plt.rcParams['font.sans-serif'] = ['SimHei'] #用来正常显示中文标签
+ 
+plt.rcParams['axes.unicode_minus']=False #用来正常显示负号（用中文显示符号会有bug
+
 LOCAL_RANK = int(os.getenv('LOCAL_RANK', -1))  # https://pytorch.org/docs/stable/elastic/run.html
 RANK = int(os.getenv('RANK', -1))
 WORLD_SIZE = int(os.getenv('WORLD_SIZE', 1))
