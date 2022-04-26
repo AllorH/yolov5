@@ -174,6 +174,9 @@ class ConfusionMatrix:
     def plot(self, normalize=True, save_dir='', names=()):
         try:
             import seaborn as sn
+          
+ 
+            sn.set(font='SimHei')
 
             array = self.matrix / ((self.matrix.sum(0).reshape(1, -1) + 1E-9) if normalize else 1)  # normalize columns
             array[array < 0.005] = np.nan  # don't annotate (would appear as 0.00)
